@@ -1,0 +1,6 @@
+miniproj/
+venv/
+__pycache__/
+*.pkl
+*.csv
+.ipynb_checkpoints/

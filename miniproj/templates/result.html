@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>E-commerce Customer Segmentation Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    function togglePreview() {
+      const preview = document.getElementById("preview-data");
+      const btn = document.getElementById("preview-btn");
+      preview.classList.toggle("hidden");
+      btn.textContent = preview.classList.contains("hidden")
+        ? "Show Preview Data"
+        : "Hide Preview Data";
+    }
+
+    function toggleDetails() {
+      const details = document.getElementById("data-science-details");
+      const btn = document.getElementById("toggle-button");
+      details.classList.toggle("hidden");
+      btn.textContent = details.classList.contains("hidden")
+        ? "Show Technical Details"
+        : "Hide Technical Details";
+    }
+  </script>
+</head>
+
+<body class="bg-gradient-to-br from-yellow-50 to-indigo-100 p-6 font-sans min-h-screen text-gray-800">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- HEADER -->
+    <header class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-indigo-800">
+        🧑‍💼 E-commerce Customer Segmentation Summary
+      </h1>
+      <p class="text-md mt-2 text-gray-600">
+        Grouped by behavior — for better business and deeper analysis.
+      </p>
+    </header>
+
+    <!-- DISTRIBUTION -->
+    <section class="grid md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-white shadow-md p-4 rounded-xl text-center">
+        <h2 class="text-lg font-bold text-indigo-700 mb-2">📊 Customer Distribution</h2>
+        <img src="{{ pie_chart_img }}" class="rounded-lg mx-auto">
+      </div>
+
+      <div class="bg-white shadow-md p-4 rounded-xl text-center">
+        <h2 class="text-lg font-bold text-indigo-700 mb-2">📈 Customer Count</h2>
+        <img src="{{ bar_chart_img }}" class="rounded-lg mx-auto">
+      </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <section class="bg-white shadow-md p-6 rounded-xl mb-10">
+      <h2 class="text-xl font-bold text-indigo-800 mb-2">💡 What This Means</h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li><strong>Budget Shoppers:</strong> Respond to discounts</li>
+        <li><strong>High Spenders:</strong> Reward with loyalty perks</li>
+        <li><strong>Occasional Buyers:</strong> Re-engage with offers</li>
+        <li><strong>Loyal Customers:</strong> Brand advocates</li>
+      </ul>
+    </section>
+
+    <!-- PREVIEW -->
+    <div class="text-center my-6">
+      <button id="preview-btn" onclick="togglePreview()"
+              class="bg-indigo-600 text-white px-5 py-2 rounded hover:bg-indigo-700">
+        Show Preview Data
+      </button>
+    </div>
+
+    <section id="preview-data" class="hidden bg-white shadow-md p-6 rounded-xl mb-10">
+      {{ tables[0] | safe }}
+      <div class="text-center mt-4">
+        <a href="/static/uploads/clustered_customers_labeled.csv"
+           class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+          ⬇️ Download Full CSV
+        </a>
+      </div>
+    </section>
+
+    <!-- TECH DETAILS -->
+    <div class="text-center my-8">
+      <button id="toggle-button" onclick="toggleDetails()"
+              class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-black">
+        Show Technical Details
+      </button>
+    </div>
+
+    <section id="data-science-details" class="hidden grid md:grid-cols-2 gap-6">
+      <img src="{{ elbow_img }}" class="rounded-xl shadow">
+      <img src="{{ cluster_img }}" class="rounded-xl shadow">
+      <img src="{{ pca_2d_img }}" class="rounded-xl shadow">
+      <img src="{{ pca_3d_img }}" class="rounded-xl shadow">
+    </section>
+
+  </div>
+</body>
+</html>
